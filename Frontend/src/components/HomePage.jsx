@@ -1,6 +1,6 @@
 import { MainLayout } from "./mainLayout.jsx";
 import { Link } from "react-router";
-import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react"; // footer
 
 
 export function HomePage(){
@@ -33,7 +33,6 @@ export function HomePage(){
                     </section>
                 </div>
             </div>}
-
                     {/* <!-- About Section --> */}
             <section class="py-16 bg-white">
             <div class="max-w-4xl mx-auto px-6 text-center">

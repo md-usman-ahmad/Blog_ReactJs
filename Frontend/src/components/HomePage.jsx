@@ -4,10 +4,14 @@ import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react"; /
 
 
 export function HomePage(){
+
+    const token = localStorage.getItem("token");
+    console.log("HomePage token = ", token);
+
     return (
         <>  
             <MainLayout>
-            {<div className=" flex items-center justify-center bg-white mt-30">
+            {!token && <div className=" flex items-center justify-center bg-white mt-30">
                 <div className="text-center max-w-xl px-6">
                     <section>
                         <div className="mb-12">
@@ -34,28 +38,28 @@ export function HomePage(){
                 </div>
             </div>}
                     {/* <!-- About Section --> */}
-            <section class="py-16 bg-white">
-            <div class="max-w-4xl mx-auto px-6 text-center">
-                <h3 class="text-3xl handwriting font-bold text-amber-800 mb-8">A little about me</h3>
-                <p class="text-lg text-amber-700 leading-relaxed max-w-2xl mx-auto" id="about-text">I'm a writer who believes in the power of small moments and quiet observations. When I'm not writing, you'll find me tending to my garden, reading by the window, or exploring new coffee shops around the city.</p>
-                <div class="mt-8 flex justify-center gap-6">
-                <div class="text-center">
-                <div class="w-20 h-20 bg-gradient-to-br from-green-300 to-emerald-400 rounded-full flex items-center justify-center text-3xl mx-auto mb-2">
+            <section className="py-16 bg-white">
+            <div className="max-w-4xl mx-auto px-6 text-center">
+                <h3 className="text-3xl handwriting font-bold text-amber-800 mb-8">A little about me</h3>
+                <p className="text-lg text-amber-700 leading-relaxed max-w-2xl mx-auto" id="about-text">I'm a writer who believes in the power of small moments and quiet observations. When I'm not writing, you'll find me tending to my garden, reading by the window, or exploring new coffee shops around the city.</p>
+                <div className="mt-8 flex justify-center gap-6">
+                <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-green-300 to-emerald-400 rounded-full flex items-center justify-center text-3xl mx-auto mb-2">
                 🌱
                 </div>
-                <p class="text-sm text-amber-600">Gardening</p>
+                <p className="text-sm text-amber-600">Gardening</p>
                 </div>
-                <div class="text-center">
-                <div class="w-20 h-20 bg-gradient-to-br from-blue-300 to-indigo-400 rounded-full flex items-center justify-center text-3xl mx-auto mb-2">
+                <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-300 to-indigo-400 rounded-full flex items-center justify-center text-3xl mx-auto mb-2">
                 📖
                 </div>
-                <p class="text-sm text-amber-600">Reading</p>
+                <p className="text-sm text-amber-600">Reading</p>
                 </div>
-                <div class="text-center">
-                <div class="w-20 h-20 bg-gradient-to-br from-amber-300 to-orange-400 rounded-full flex items-center justify-center text-3xl mx-auto mb-2">
+                <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-amber-300 to-orange-400 rounded-full flex items-center justify-center text-3xl mx-auto mb-2">
                 ☕
                 </div>
-                <p class="text-sm text-amber-600">Coffee</p>
+                <p className="text-sm text-amber-600">Coffee</p>
                 </div>
                 </div>
             </div>

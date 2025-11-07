@@ -1,10 +1,10 @@
-import { Navbar } from "./navbar.jsx"
+import { Navbar } from "./navbar.jsx";
 
-export function MainLayout({children}){
-    return (
-        <>
-            <Navbar></Navbar>
-            {children}
-        </>
-    )
+export function MainLayout({ children }) {
+  return (
+    <>
+      <Navbar></Navbar>
+      {children}
+    </>
+  );
 }

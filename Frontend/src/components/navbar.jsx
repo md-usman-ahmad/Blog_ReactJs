@@ -6,6 +6,9 @@ export function Navbar(){
     const Location = useLocation();
     console.log("Location.pathname = ",Location.pathname);
 
+    const token = localStorage.getItem("token");
+    console.log("navbar token = ",token)
+
     return (
         <>
             <div
@@ -48,7 +51,7 @@ export function Navbar(){
                             >
                             Education
                         </Link>
-                        {false && 
+                        {token && 
                         <Link to="/AddBlog"
                             className={`cursor-pointer font-medium ${Location.pathname === "/AddBlog" ? "text-blue-600" : "text-gray-700 hover:text-blue-600" }`}
                             >
@@ -57,27 +60,24 @@ export function Navbar(){
                     </nav>
 
                     <div className="flex items-center space-x-4">
-                    {false ? (
+                    {token ? (
                         <>
-                        <Link to="/CartPage" >
-                            <button className={`relative ${Location.pathname === "/CartPage" ? "text-yellow-200" : "text-gray-700 hover:text-yellow-200"} `}>
-                                <svg
-                                    className="w-6 h-6"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
+                        <Link to="/UserProfile" >
+                            <div className="relative">
+                                <button
+                                    id="profile-button"
+                                    className="relative flex rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all hover:ring-2 hover:ring-indigo-300 hover:scale-105 transform duration-200"
+                                    title="Go to Your Profile"
                                 >
-                                    <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8"
-                                    ></path>
-                                </svg>
-                                <span className="absolute -top-2 -right-2 bg-zinc-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                                    xx
-                                </span>
-                            </button>
+                                    {" "}
+                                    <span className="sr-only">Go to profile</span>{" "}
+                                    <img
+                                    className="h-10 w-10 rounded-full object-cover border-2 border-white shadow-md"
+                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                    alt="User profile"
+                                    />{" "}
+                                </button>
+                            </div>
                         </Link>
                             <Link
                                 className={`cursor-pointer font-medium text-grey-700 hover:text-red-500 }`} 

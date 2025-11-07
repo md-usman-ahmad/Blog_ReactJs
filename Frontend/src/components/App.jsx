@@ -2,11 +2,12 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import { PageNotFound } from "./PageNotFound.jsx";
 import { HomePage } from "./HomePage.jsx";
-import { Sports } from "./Sports.jsx";
-import { Education } from "./Education.jsx";
-import { Travel } from "./Travel.jsx";
+import { categoryName } from "./categoryName.jsx";
 import { SignupPage } from "./SignupPage.jsx";
 import { LoginPage } from "./LoginPage.jsx";
+import { UserProfile } from "./UserProfile.jsx";
+import { UPFavourites } from "./UPFavourites.jsx";
+import { UPZeroBlogs } from "./UPZeroBlogs.jsx";
 
 const routes = createBrowserRouter([
     {
@@ -15,16 +16,8 @@ const routes = createBrowserRouter([
         errorElement : <PageNotFound></PageNotFound>
     },
     {
-        path : "/Sports",
-        Component : Sports,
-    },
-    {
-        path : "/Education",
-        Component : Education,
-    },
-    {
-        path : "/Travel",
-        Component : Travel
+        path : "/:categoryName",
+        Component : categoryName,
     },
     {
         path : "/Signup",
@@ -33,6 +26,18 @@ const routes = createBrowserRouter([
     {
         path : "/Login",
         Component : LoginPage
+    },
+    {
+        path : "/UserProfile",
+        Component : UserProfile
+    },
+    {
+        path : "/UserProfile/favourites",
+        Component : UPFavourites
+    },
+    {
+        path : "/UserProfile/MyBlogs",
+        Component : UPZeroBlogs
     }
 ])
 

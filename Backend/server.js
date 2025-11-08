@@ -16,8 +16,10 @@ app.use(
 
 const signupRouter = require("./Routes/signup.js");
 const loginRouter = require("./Routes/login.js");
+const userProfileRouter = require("./Routes/userProfile.js");
 app.use("/signup" , signupRouter);
 app.use("/login" , loginRouter);
+app.use("/userProfile" , userProfileRouter);
 
 
 

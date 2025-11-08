@@ -100,7 +100,7 @@ export function LoginPage(){
                             </p>
                             <p className="text-gray-600">Forgot Password? 
                             <button type="button" data-modal-target="forgotPassword" data-modal-toggle="forgotPassword" 
-                            className="text-blue-600 underline cursor-pointer">change Password</button>
+                            className="text-blue-600  cursor-pointer">change Password</button>
                             </p>
                             <Link to="/" className="text-blue-600 underline cursor-pointer me-3">Homepage</Link>
                         </div>

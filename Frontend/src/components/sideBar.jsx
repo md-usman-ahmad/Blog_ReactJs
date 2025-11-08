@@ -17,6 +17,7 @@ export function SideBar(){
             </div>
          </li>
          </Link>
+         
          <Link to="/UserProfile/MyBlogs">
          <li>
             <div  className="cursor-pointer flex items-center p-2 text-stone-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -36,6 +37,7 @@ export function SideBar(){
             </div>
          </li>
          </Link>
+
          <Link to="/UserProfile/favourites">
          <li>
             <div  className="cursor-pointer flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-700 group">

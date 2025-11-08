@@ -1,8 +1,22 @@
+import { useNavigate } from "react-router";
 import { MainLayout } from "./mainLayout";
 import { UserProfileLayout } from "./UserProfileLayout";
 import { SquarePen } from 'lucide-react';
+import { useEffect } from "react";
 
 export function UPZeroBlogs(){
+      const navigate = useNavigate();
+    const token = localStorage.getItem("token");
+    console.log("/UserProfile/myBlogs token = ",token);
+
+    useEffect( ()=>{
+        if(!token){
+            alert("Log in to see your Personal Blogs !!!!");
+            navigate("/");
+        }
+    },[])
+
+
     return (
         <>
         <MainLayout>

@@ -8,6 +8,7 @@ import { LoginPage } from "./LoginPage.jsx";
 import { UserProfile } from "./UserProfile.jsx";
 import { UPFavourites } from "./UPFavourites.jsx";
 import { UPZeroBlogs } from "./UPZeroBlogs.jsx";
+import { AddBlog } from "./AddBlog.jsx";
 
 const routes = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const routes = createBrowserRouter([
     {
         path : "/Login",
         Component : LoginPage
+    },
+    {
+        path : "/AddBlog",
+        Component : AddBlog
     },
     {
         path : "/UserProfile",

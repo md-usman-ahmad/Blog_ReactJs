@@ -1,9 +1,66 @@
+import { useNavigate } from "react-router";
 import { MainLayout } from "./mainLayout";
 import { UserProfileLayout } from "./UserProfileLayout.jsx";
-import { useState } from "react";   
+import { useEffect, useRef, useState } from "react";   
+import axios from "axios";
 
 export function UserProfile() {
-  const [Gender, setGender] = useState();
+    const [userProfile , setUserProfile] = useState();
+    console.log("userProfile = ",userProfile);
+    
+    const [Gender, setGender] = useState();
+    console.log("Gender = ",Gender)
+
+  const navigate = useNavigate();
+    const token = localStorage.getItem("token");
+    console.log("UserProfile token = ",token);
+
+    useEffect( ()=>{
+        if(!token){
+            alert("Log in to see your Profile !!!!");
+            navigate("/");
+        } else {
+            axios({
+                method : "GET",
+                url : "http://localhost:4500/userProfile",
+                headers : {
+                    authorization : token
+                }
+            })
+            .then((response)=>{
+                console.log(response.data);
+                setUserProfile(response.data[0]);
+                setGender(response.data[0].gender);
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+        }
+    },[])
+
+    let firstnameRef = useRef(); 
+    let ageRef = useRef(); 
+    let emailRef = useRef(); 
+
+    const updateUserProfile = ()=>{
+        axios({
+            method : "PATCH",
+            url : "http://localhost:4500/userProfile",
+            data : {
+                firstname: firstnameRef.current.value,
+                age: ageRef.current.value ,
+                Gender,
+                email : emailRef.current.value
+            },
+            headers : {
+                authorization : token
+            }
+        })
+        .then((response)=>{
+            console.log("updateUserProfile = " , response.data)
+            alert(response.data);
+        })
+    }
 
   return (
     <>
@@ -48,6 +105,8 @@ export function UserProfile() {
                       <input
                         type="text"
                         className="w-full px-0 py-1 text-lg border-0 border-b border-gray-200 focus:outline-none focus:border-gray-800 transition-colors bg-transparent"
+                        defaultValue={userProfile?.firstname || ""}
+                        ref = {firstnameRef}
                       />
                     </div>
                     <div>
@@ -57,17 +116,19 @@ export function UserProfile() {
                       <input
                         type="text"
                         className="w-full px-0 py-1 text-lg border-0 border-b border-gray-200 focus:outline-none focus:border-gray-800 transition-colors bg-transparent"
+                        defaultValue={userProfile?.age || ""}
+                        ref = {ageRef}
                       />
                     </div>
                     <div>
                         <label className="block text-sm text-gray-600 mb-3">Gender</label>
                         <div className="flex space-x-6">
                             <label className="flex items-center cursor-pointer">
-                                <input onChange={(event)=>{setGender(event.target.value)}}  type="radio" name="gender" value="Male" className="mr-2 text-green-500"/>
+                                <input onChange={(event)=>{setGender(event.target.value)}} checked={Gender === "Male"}   type="radio" name="gender" value="Male" className="mr-2 text-green-500"/>
                                 <span className="text-gray-700">Male</span>
                             </label>
                             <label className="flex items-center cursor-pointer">
-                                <input onChange={(event)=>{setGender(event.target.value)}}  type="radio" name="gender" value="Female" className="mr-2 text-green-500"/>
+                                <input onChange={(event)=>{setGender(event.target.value)}} checked={Gender === "Female"}   type="radio" name="gender" value="Female" className="mr-2 text-green-500"/>
                                 <span className="text-gray-700">Female</span>
                             </label>
                         </div>
@@ -80,11 +141,16 @@ export function UserProfile() {
                     <input
                       type="email"
                       className="w-full px-0 py-1 text-lg border-0 border-b border-gray-200 focus:outline-none focus:border-gray-800 transition-colors bg-transparent"
+                      defaultValue={userProfile?.email || ""}
+                      ref = {emailRef}
                     />
                   </div>
                 </div>
                 <div className="mt-12 text-center">
                   <button
+                    onClick={()=>{
+                        updateUserProfile()
+                    }}
                     type="submit"
                     className="bg-gray-800 hover:bg-gray-900 text-white font-light py-4 px-12 rounded-full transition-colors tracking-wide"
                   >
@@ -99,3 +165,10 @@ export function UserProfile() {
     </>
   );
 }
+
+
+
+
+
+
+

@@ -3,11 +3,12 @@ import { MainLayout } from "./mainLayout";
 import { UserProfileLayout } from "./UserProfileLayout.jsx";
 import { useEffect, useRef, useState } from "react";   
 import axios from "axios";
+import toast from 'react-hot-toast';
 
 export function UserProfile() {
     const [userProfile , setUserProfile] = useState();
     console.log("userProfile = ",userProfile);
-    
+
     const [Gender, setGender] = useState();
     console.log("Gender = ",Gender)
 
@@ -58,7 +59,7 @@ export function UserProfile() {
         })
         .then((response)=>{
             console.log("updateUserProfile = " , response.data)
-            alert(response.data);
+            toast(response.data);
         })
     }
 

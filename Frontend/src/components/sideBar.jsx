@@ -4,7 +4,7 @@ export function SideBar(){
     console.log("My Profile");
     return (
         <>
-            <aside id="default-sidebar" className="left-0 z-40 w-64 h-[calc(100vh-70px)] transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+            <aside id="default-sidebar" className="left-0 z-40 w-64 h-[calc(100vh-70px)] transition-transform -translate-x-full sm:translate-x-0 border-r" aria-label="Sidebar">
    <div className="h-full px-3 py-4 overflow-y-auto bg-white">
       <ul className="space-y-2 font-medium">
         <Link to="/UserProfile">

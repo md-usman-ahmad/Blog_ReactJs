@@ -9,6 +9,7 @@ import { UserProfile } from "./UserProfile.jsx";
 import { UPFavourites } from "./UPFavourites.jsx";
 import { UPZeroBlogs } from "./UPZeroBlogs.jsx";
 import { AddBlog } from "./AddBlog.jsx";
+import { Toaster } from 'react-hot-toast';
 
 const routes = createBrowserRouter([
     {
@@ -51,6 +52,7 @@ export function App(){
     return (
         <>
             <RouterProvider router={routes} ></RouterProvider>
+            <Toaster />
         </>
     )
 }

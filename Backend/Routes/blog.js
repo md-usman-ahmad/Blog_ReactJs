@@ -61,9 +61,51 @@ Router.delete("/" , async function(request,response){
         let params = [blogId , currentLoggedInuserId];
         await dbQuery(query , params);
         response.send(`${currentLoggedInusername}(userId-${currentLoggedInuserId}) blogId-${blogId} deleted`);
-        
+
     } catch (error) {
         console.log("blog error(DELETE) = ",error);
+        response.status(500).send(error);
+    }
+})
+
+Router.get("/singleBlog" , async function(request,response){
+    try {
+        console.log("request.originalUrl = ",request.originalUrl);
+        console.log("request.method = ",request.method);
+        const {blogId} = request.query;
+        const {currentLoggedInuserId} = request;
+
+        
+        let query = "select * from Blogs where blogId = ? AND uId = ?";
+        let params = [blogId , currentLoggedInuserId];
+        let outputFromDB = await dbQuery(query,params);
+        response.send(outputFromDB);
+
+    } catch (error) {
+        console.log("blog error(GET) = ",error);
+        response.status(500).send(error);
+    }
+})
+
+Router.patch("/" , async function(request,response){
+    try {
+        console.log("request.originalUrl = ",request.originalUrl);
+        console.log("request.method = ",request.method);
+        console.log("request.body = ",request.body);
+
+        const {blogId , imgurl,title,description,category} = request.body;
+        const {currentLoggedInuserId , currentLoggedInusername} = request;
+
+        let query = `update Blogs
+                     set imgurl = ? , title = ? , description = ? , category = ?
+                     where blogId = ? AND uId = ?
+                    `
+        let params = [imgurl,title,description,category , blogId , currentLoggedInuserId];
+        await dbQuery(query , params);
+        response.send(`${currentLoggedInusername}(userId-${currentLoggedInuserId}) blogId-${blogId} Updated`);
+
+    } catch (error) {
+        console.log("blog error(PATCH) = ",error);
         response.status(500).send(error);
     }
 })

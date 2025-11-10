@@ -7,9 +7,10 @@ import { SignupPage } from "./SignupPage.jsx";
 import { LoginPage } from "./LoginPage.jsx";
 import { UserProfile } from "./UserProfile.jsx";
 import { UPFavourites } from "./UPFavourites.jsx";
-import { UPZeroBlogs } from "./UPZeroBlogs.jsx";
+import { UPMyBlogs } from "./UPMyBlogs.jsx";
 import { AddBlog } from "./AddBlog.jsx";
 import { Toaster } from 'react-hot-toast';
+import { UPEditBlog } from "./UPEditBlog.jsx";
 
 const routes = createBrowserRouter([
     {
@@ -43,7 +44,11 @@ const routes = createBrowserRouter([
     },
     {
         path : "/UserProfile/MyBlogs",
-        Component : UPZeroBlogs
+        Component : UPMyBlogs
+    },
+    {
+        path : "/UserProfile/EditBlog/:blogId",
+        Component : UPEditBlog
     }
 ])
 

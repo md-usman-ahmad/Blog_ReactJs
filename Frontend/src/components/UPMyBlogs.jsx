@@ -8,7 +8,7 @@ import { BlogCard } from "./blogCard.jsx";
 import toast from 'react-hot-toast';
 
 
-export function UPZeroBlogs() {
+export function UPMyBlogs() {
   
     const [myBlogs , setMyBlogs] = useState([]);
     
@@ -96,7 +96,7 @@ export function UPZeroBlogs() {
           </section>}
 
           {myBlogs.map( (item)=>{
-            return <BlogCard {...item} deleteBlog={handleDeleteBlog}></BlogCard>
+            return <BlogCard key={item.blogId} {...item} deleteBlog={handleDeleteBlog}></BlogCard>
           })}
 
         </UserProfileLayout>

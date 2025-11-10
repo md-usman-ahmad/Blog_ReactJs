@@ -46,7 +46,7 @@ export function AddBlog() {
             .catch((error)=>{
                 console.log("Publish error = ", error);
             })
-            
+
             imgurlRef.current.value = "";
             titleRef.current.value = "";
             descriptionRef.current.value = "";
@@ -140,9 +140,9 @@ export function AddBlog() {
                 >
                   {" "}
                   <option value="">Select a category</option>{" "}
-                  <option value="Technology">Sports</option>{" "}
+                  <option value="Sports">Sports</option>{" "}
                   <option value="Travel">Travel</option>{" "}
-                  <option value="Lifestyle">Education</option>{" "}
+                  <option value="Education">Education</option>{" "}
                 </select>
               </div>
               <button

@@ -1,3 +1,4 @@
+import { Link } from "react-router"
 
 export function BlogCard({blogId , imgurl , category , title, createdAt , deleteBlog}){ 
     return (
@@ -32,13 +33,15 @@ export function BlogCard({blogId , imgurl , category , title, createdAt , delete
         {/* Date */}
         <p className="text-sm text-muted-foreground mb-3">{createdAt}</p>
 
-        <div class="flex gap-3">
-            <button class="px-4 py-2 text-black border  rounded-lg hover:bg-blue-700 hover:text-white transition-colors">
+        <div className="flex gap-3">
+          <Link to={`/UserProfile/EditBlog/${blogId}`}>
+            <button className="px-4 py-2 text-black border  rounded-lg hover:bg-blue-700 hover:text-white transition-colors">
                 Edit
             </button>
+          </Link>
             <button 
             onClick={()=>{deleteBlog(blogId)}}  
-            class="px-4 py-2 text-black border rounded-lg hover:bg-red-700 hover:text-white transition-colors">
+            className="px-4 py-2 text-black border rounded-lg hover:bg-red-700 hover:text-white transition-colors">
                 Delete
             </button>
         </div>

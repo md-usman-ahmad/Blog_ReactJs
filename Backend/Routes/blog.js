@@ -16,8 +16,8 @@ Router.post("/" , async function(request,response){
         const {currentLoggedInuserId , currentLoggedInusername} = request;
 
         if(imgurl && title && description && category){
-            let query = "insert into Blogs(imgurl , title , description , category , uId) values(?,?,?,?,?)";
-            let params = [imgurl , title, description , category , currentLoggedInuserId];
+            let query = "insert into Blogs(imgurl , title , description , createdAt ,category , uId) values(?,?,?,?,?,?)";
+            let params = [imgurl , title, description , new Date().toISOString().slice(0,19).replace("T" , " ") ,category , currentLoggedInuserId];
             await dbQuery(query , params);
 
             response.send(`${currentLoggedInusername}(userId-${currentLoggedInuserId}) ${title} Blog Added`);

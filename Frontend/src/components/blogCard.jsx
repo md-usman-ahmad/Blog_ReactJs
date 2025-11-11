@@ -17,9 +17,9 @@ export function BlogCard({blogId , imgurl , category , title, createdAt , delete
       <div className="p-6">
         {/* Categories */}
         <div className="flex gap-2 mb-1">
-          <a href="#" className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors ">
+          <p  className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors ">
             {category}
-          </a>
+          </p>
         </div>
 
         {/* Title */}
@@ -40,7 +40,9 @@ export function BlogCard({blogId , imgurl , category , title, createdAt , delete
             </button>
           </Link>
             <button 
-            onClick={()=>{deleteBlog(blogId)}}  
+            onClick={()=>{
+              deleteBlog(blogId);
+            }}  
             className="px-4 py-2 text-black border rounded-lg hover:bg-red-700 hover:text-white transition-colors">
                 Delete
             </button>

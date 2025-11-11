@@ -3,14 +3,14 @@ import { RouterProvider } from "react-router/dom";
 import { PageNotFound } from "./PageNotFound.jsx";
 import { HomePage } from "./HomePage.jsx";
 import { categoryName } from "./categoryName.jsx";
-import { SignupPage } from "./SignupPage.jsx";
-import { LoginPage } from "./LoginPage.jsx";
-import { UserProfile } from "./UserProfile.jsx";
-import { UPFavourites } from "./UPFavourites.jsx";
-import { UPMyBlogs } from "./UPMyBlogs.jsx";
+import { SignupPage } from "./Registration/SignupPage.jsx";
+import { LoginPage } from "./Registration/LoginPage.jsx";
+import { UserProfile } from "./UserProfile/UserProfile.jsx";
+import { UPFavourites } from "./UserProfile/UPFavourites.jsx";
+import { UPBlogs } from "./UserProfile/UPBlogs.jsx";
 import { AddBlog } from "./AddBlog.jsx";
 import { Toaster } from 'react-hot-toast';
-import { UPEditBlog } from "./UPEditBlog.jsx";
+import { UPEditBlog } from "./UserProfile/UPEditBlog.jsx";
 
 const routes = createBrowserRouter([
     {
@@ -44,7 +44,7 @@ const routes = createBrowserRouter([
     },
     {
         path : "/UserProfile/MyBlogs",
-        Component : UPMyBlogs
+        Component : UPBlogs
     },
     {
         path : "/UserProfile/EditBlog/:blogId",

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
-import { MainLayout } from "./mainLayout";
-import { UserProfileLayout } from "./UserProfileLayout";
+import { MainLayout } from "../Layouts/mainLayout.jsx";
+import { UserProfileLayout } from "../Layouts/UserProfileLayout.jsx";
 import { useEffect } from "react";
 
 export function UPFavourites() {

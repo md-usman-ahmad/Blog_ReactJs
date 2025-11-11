@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router";
-import { MainLayout } from "./mainLayout.jsx"
+import { MainLayout } from "../Layouts/mainLayout.jsx"
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";

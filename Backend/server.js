@@ -18,11 +18,12 @@ const signupRouter = require("./Routes/signup.js");
 const loginRouter = require("./Routes/login.js");
 const userProfileRouter = require("./Routes/userProfile.js");
 const blogRouter = require("./Routes/blog.js");
+const getCategoryBlogsRouter = require("./Routes/getCategoryBlogs.js");
 app.use("/signup" , signupRouter);
 app.use("/login" , loginRouter);
 app.use("/userProfile" , userProfileRouter);
 app.use("/blog" , blogRouter);
-
+app.use("/getCategoryBlogs" , getCategoryBlogsRouter);
 
 
 app.listen(constants.PORT , function(){

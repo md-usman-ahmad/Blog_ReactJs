@@ -1,4 +1,4 @@
-import { MainLayout } from "./mainLayout.jsx";
+import { MainLayout } from "./Layouts/mainLayout.jsx";
 import { Link } from "react-router";
 import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react"; // footer
 

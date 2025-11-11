@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { MainLayout } from "./mainLayout.jsx";
+import { MainLayout } from "../Layouts/mainLayout.jsx";
 
 export function SignupPage(){
     const navigate = useNavigate();

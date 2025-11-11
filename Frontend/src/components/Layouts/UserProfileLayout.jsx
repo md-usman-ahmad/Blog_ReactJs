@@ -1,4 +1,4 @@
-import { SideBar } from "./sideBar";
+import { SideBar } from "../sideBar";
 
 export function UserProfileLayout({children}){
     return (

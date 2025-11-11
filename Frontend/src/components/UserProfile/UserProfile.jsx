@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
-import { MainLayout } from "./mainLayout";
-import { UserProfileLayout } from "./UserProfileLayout.jsx";
+import { MainLayout } from "../Layouts/mainLayout.jsx";
+import { UserProfileLayout } from "../Layouts/UserProfileLayout.jsx";
 import { useEffect, useRef, useState } from "react";   
 import axios from "axios";
 import toast from 'react-hot-toast';

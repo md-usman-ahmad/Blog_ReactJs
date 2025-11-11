@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useRef , useEffect } from "react";
 import { Link , useNavigate } from "react-router"
-import { MainLayout } from "./mainLayout";
+import { MainLayout } from "../Layouts/mainLayout.jsx";
 
 export function LoginPage(){
     const navigate = useNavigate();

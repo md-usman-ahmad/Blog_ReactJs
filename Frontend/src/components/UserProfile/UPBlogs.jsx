@@ -1,14 +1,14 @@
 import { useNavigate, Link } from "react-router";
-import { MainLayout } from "./mainLayout.jsx";
-import { UserProfileLayout } from "./UserProfileLayout.jsx";
+import { MainLayout } from "../Layouts/mainLayout.jsx";
+import { UserProfileLayout } from "../Layouts/UserProfileLayout.jsx";
 import { SquarePen } from "lucide-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { BlogCard } from "./blogCard.jsx";
+import { BlogCard } from "../blogCard.jsx";
 import toast from 'react-hot-toast';
 
 
-export function UPMyBlogs() {
+export function UPBlogs() {
   
     const [myBlogs , setMyBlogs] = useState([]);
     

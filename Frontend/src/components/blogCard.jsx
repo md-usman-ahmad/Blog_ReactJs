@@ -3,7 +3,7 @@ import { Link } from "react-router"
 export function BlogCard({blogId , imgurl , category , title, createdAt , deleteBlog}){ 
     return (
         <>
-            <article className="group p-2    overflow-hidden rounded-lg border border-border bg-card hover:shadow-lg transition-shadow w-1/4 mx-auto h-[40vh]">
+            <article className="group p-2  rounded-lg border-x  bg-card hover:shadow-lg transition-shadow w-1/4 mx-auto ">
       {/* Featured Image */}
       <div className="overflow-hidden h-34 bg-muted">
         <img
@@ -33,7 +33,7 @@ export function BlogCard({blogId , imgurl , category , title, createdAt , delete
         {/* Date */}
         <p className="text-sm text-muted-foreground mb-3">{createdAt}</p>
 
-        <div className="flex gap-3">
+        <div className="flex gap-3 mt-auto ">
           <Link to={`/UserProfile/EditBlog/${blogId}`}>
             <button className="px-4 py-2 text-black border  rounded-lg hover:bg-blue-700 hover:text-white transition-colors">
                 Edit

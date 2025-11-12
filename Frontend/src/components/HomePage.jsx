@@ -1,12 +1,27 @@
 import { MainLayout } from "./Layouts/mainLayout.jsx";
 import { Link } from "react-router";
-import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react"; // footer
+import { Facebook, Twitter, Instagram, Linkedin, Github} from "lucide-react"; // footer
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { HorizontalCard } from "./horizontalCard.jsx";
 
 
 export function HomePage(){
 
     const token = localStorage.getItem("token");
-    console.log("HomePage token = ", token);
+    console.log("navbar token = ",token)
+    const [RecentBlogs , setRecentBlogs] = useState([]);
+
+    useEffect( ()=>{
+        axios({
+            method  : "GET",
+            url : "http://localhost:4500/RecentBlogs",
+        })
+        .then((response)=>{
+            console.log(response.data)
+            setRecentBlogs(response.data);
+        })
+    },[])
 
     return (
         <>  
@@ -37,6 +52,18 @@ export function HomePage(){
                     </section>
                 </div>
             </div>}
+
+                {/* Recent Blogs  */}
+                
+
+                <div className="w-1/2 mx-auto">
+                <h3 className="text-3xl handwriting font-bold text-stone-800 my-6 mb-2">Recent Blogs </h3>
+                {RecentBlogs.map( (item)=>{
+                    return  <HorizontalCard key={item.blogId} {...item}></HorizontalCard>  
+                    
+                })}
+          </div>
+
                     {/* <!-- About Section --> */}
             <section className="py-16 bg-white">
             <div className="max-w-4xl mx-auto px-6 text-center">
@@ -80,29 +107,20 @@ export function HomePage(){
                     {/* Navigation Links */}
                     <nav className="mb-6">
                     <ul className="flex flex-wrap justify-center gap-6 text-sm">
-                        <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">Home</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">About</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">Articles</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">Categories</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a></li>
+                        <Link to="/" className="text-gray-600 hover:text-gray-900 transition-colors">Home</Link>
+                        <Link to="/Sports" className="text-gray-600 hover:text-gray-900 transition-colors">Sports</Link>
+                        <Link to="/Travel" className="text-gray-600 hover:text-gray-900 transition-colors">Travel</Link>
+                        <Link to="/Education" className="text-gray-600 hover:text-gray-900 transition-colors">Education</Link>
+                        <Link to="/AddBlog" className="text-gray-600 hover:text-gray-900 transition-colors">AddBlog</Link>
                     </ul>
                     </nav>
 
                     {/* Social Links */}
                     <div className="flex justify-center gap-4 mb-6">
-                    <a href="#" className="text-gray-400 hover:text-blue-600 transition-colors">
-                        <Facebook className="h-5 w-5" />
-                    </a>
-                    <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
-                        <Twitter className="h-5 w-5" />
-                    </a>
-                    <a href="#" className="text-gray-400 hover:text-pink-600 transition-colors">
-                        <Instagram className="h-5 w-5" />
-                    </a>
-                    <a href="#" className="text-gray-400 hover:text-blue-700 transition-colors">
+                    <a href="https://www.linkedin.com/in/usman-ahmad-87aa5238a/" className="text-gray-400 hover:text-blue-700 transition-colors">
                         <Linkedin className="h-5 w-5" />
                     </a>
-                    <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
+                    <a href="https://github.com/md-usman-ahmad" className="text-gray-400 hover:text-gray-900 transition-colors">
                         <Github className="h-5 w-5" />
                     </a>
                     </div>

@@ -23,6 +23,10 @@ const routes = createBrowserRouter([
         Component : categoryName,
     },
     {
+        path : "/:categoryName/:blogId",
+        Component : ProductPage
+    },
+    {
         path : "/Signup",
         Component : SignupPage
     },

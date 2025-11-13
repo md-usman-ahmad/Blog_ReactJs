@@ -1,26 +1,113 @@
+import { use, useEffect, useState } from "react";
+import { MainLayout } from "./Layouts/mainLayout";
+import axios from "axios";
+import { useParams } from "react-router";
+import toast from "react-hot-toast";
+
 export function DetailBlogPage(){
+    const {categoryName , blogId} = useParams();
+
+    const [DetailBlogPage , setDetailBlogPage] = useState();
+    console.log("DetailBlogPage = ",DetailBlogPage)
+
+    const [IsFav , setIsFav] = useState(false);
+
+    const token = localStorage.getItem("token");
+    useEffect(()=>{
+        axios({
+            method : "GET",
+            url : "http://localhost:4500/getCategoryBlogs/singleBlog",
+            params : {
+                categoryName , blogId
+            }
+        })
+        .then((response)=>{
+            console.log("outputFromBackend = ",response.data);
+            console.log(response.data[0].blogId);
+            const blog = response.data[0];
+            setDetailBlogPage(blog);    
+            axios({
+                method : "GET",
+                url : "http://localhost:4500/Favourite",
+                params : {
+                    blogId : blog.blogId
+                },
+                headers : {
+                    Authorization : token
+                }  
+            })
+            .then((response)=>{
+                console.log(response.data);
+                setIsFav(response.data);    
+            })
+        })
+    },[])
+
+    const favourite = ()=>{
+        
+        if(!IsFav){
+            axios({
+                method : "POST",
+                url : "http://localhost:4500/Favourite",
+                data : {
+                    blogId : DetailBlogPage.blogId,
+                    title : DetailBlogPage.title
+                },
+                headers : {
+                    Authorization : token
+                }
+            })
+            .then((response)=>{
+                console.log(response.data)
+                toast(response.data)
+            })
+        } else {
+            axios({
+                method : "DELETE",
+                url : "http://localhost:4500/Favourite",
+                data : {
+                    blogId : DetailBlogPage.blogId,
+                    title : DetailBlogPage.title
+                },
+                headers : {
+                    Authorization : token
+                }
+            })
+            .then((response)=>{
+                console.log(response.data)
+                toast(response.data)
+            })
+        }
+        setIsFav(!IsFav);
+    }
+
     return (
-        <>
+        <> 
+        <MainLayout>
             <div id="variation-3" className="variation  zen-layout">
           <div className="max-w-4xl mx-auto py-2">
-            {/* <div className="text-center mb-16">
-        <h1 id="zen-title" className="text-5xl font-thin text-gray-800 mb-8 tracking-wide">Premium Wireless Headphones</h1>
-        <div className="w-16 h-px bg-gray-300 mx-auto mb-8"></div>
-        <p id="zen-slogan" className="text-lg font-light text-gray-600 max-w-lg mx-auto">Experience crystal-clear audio like never before</p>
-        </div> */}
-            <div className="product-image h-72 mb-8 mx-auto max-w-lg rounded-lg overflow-hidden">
-              <img src={productDetails[0].imgsrc} alt="" className="w-full h-full object-contain" />
+            <div className="product-image h-52 mb-8 mx-auto max-w-lg rounded-lg overflow-hidden">
+              <img src={DetailBlogPage?.imgurl} alt="" className="w-full h-full object-contain" />
             </div>
             <div className="text-center mb-12">
               <span id="zen-price" className="text-5xl font-thin text-gray-800 me-3">
-                {productDetails[0].title}
+                {DetailBlogPage?.title}
+
               </span>
-              <span id="zen-price" className="text-2xl font-thin text-gray-800">
-                ₹{productDetails[0].price}
-              </span>
-              <div className="mt-4">
-                <span className="text-yellow-400">★★★★★</span>{" "}
-                <span className="text-sm font-light text-gray-500 ml-2">(4.8)</span>
+              <div className=" flex justify-center  items-center gap-2 mt-2">
+                <span className="text-xs text-gray-500 uppercase tracking-wider ">{DetailBlogPage?.category}</span>{" "}
+                <svg onClick={()=>{favourite()}} xmlns="http://www.w3.org/2000/svg" 
+                    width="24" 
+                    height="24" 
+                    viewBox="0 0 24 24" 
+                    fill={IsFav ? "red" : "none"} 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    className="lucide lucide-heart">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
               </div>
             </div>
             <div className="max-w-2xl mx-auto text-center mb-5">
@@ -28,19 +115,12 @@ export function DetailBlogPage(){
                 id="zen-description"
                 className="text-lg font-light text-gray-600 leading-relaxed"
               >
-                {productDetails[0].slogan}
+                {DetailBlogPage?.description}
               </p>
-            </div>
-            <div className="flex justify-center space-x-8">
-              <button className="px-12 py-4 border border-gray-800 text-gray-800 font-light hover:bg-gray-800 hover:text-white transition-all duration-500">
-                Add to Cart
-              </button>{" "}
-              <button className="px-12 py-4 text-gray-600 font-light hover:text-gray-800 transition-colors">
-                Buy Now
-              </button>
             </div>
           </div>
         </div>
+        </MainLayout>
         </>
     )
 }

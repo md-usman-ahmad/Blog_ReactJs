@@ -11,6 +11,7 @@ import { UPBlogs } from "./UserProfile/UPBlogs.jsx";
 import { AddBlog } from "./AddBlog.jsx";
 import { Toaster } from 'react-hot-toast';
 import { UPEditBlog } from "./UserProfile/UPEditBlog.jsx";
+import { DetailBlogPage } from "./DetailBlogPage.jsx";
 
 const routes = createBrowserRouter([
     {
@@ -24,7 +25,7 @@ const routes = createBrowserRouter([
     },
     {
         path : "/:categoryName/:blogId",
-        Component : ProductPage
+        Component : DetailBlogPage
     },
     {
         path : "/Signup",

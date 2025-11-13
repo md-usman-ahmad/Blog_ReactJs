@@ -14,7 +14,7 @@ export function categoryName(){
     console.log("categoryBlogs: ", categoryBlogs);
 
     const token = localStorage.getItem("token");
-    console.log("SPORTS token = ",token);
+    console.log("categoryBlogs token = ",token);
 
     useEffect( ()=>{
         axios({
@@ -49,7 +49,7 @@ export function categoryName(){
            <div className="flex p-2">
             
                 {categoryBlogs.map( (item)=>{
-                    return <Link> <CategoryBlogCard  {...item}></CategoryBlogCard> </Link>
+                    return <Link to={`/${categoryName}/${item.blogId}`}> <CategoryBlogCard  {...item}></CategoryBlogCard> </Link>
                 })}
                 
                            

@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { Link , useLocation} from "react-router";
 
 
@@ -84,7 +85,7 @@ export function Navbar(){
                                 className={`cursor-pointer font-medium text-grey-700 hover:text-red-500 }`} 
                                 onClick={()=>{
                                     localStorage.removeItem("token");
-                                    alert("Logout Successfull");
+                                    toast("Logout Successfull");
                                 }}
                                 to="/"
                                 >

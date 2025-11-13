@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { MainLayout } from "../Layouts/mainLayout.jsx";
 import { UserProfileLayout } from "../Layouts/UserProfileLayout.jsx";
 import { useEffect, useState } from "react";
@@ -73,7 +73,7 @@ export function UPFavourites() {
           </section> }
 
           {FavouriteBlogs.map( (item)=>{
-            return <CategoryBlogCard {...item}></CategoryBlogCard>
+            return <Link to={`/${item.category}/${item.blogId}`} key={item.blogId}> <CategoryBlogCard {...item}></CategoryBlogCard> </Link>
           })}
 
 

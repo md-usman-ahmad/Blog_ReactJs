@@ -2,7 +2,6 @@ const express = require("express");
 const Router = express.Router();
 const {AuthMiddleware}  = require("../middleware.js");
 const dbQuery = require("../database/dbhelper.js");
-const { param } = require("./signup");
 
 Router.get("/" , AuthMiddleware , async function(request,response){
     try {
@@ -24,6 +23,7 @@ Router.get("/" , AuthMiddleware , async function(request,response){
         response.status(500).send(error);
     }
 })
+
 
 
 module.exports = Router;

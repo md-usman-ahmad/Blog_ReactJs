@@ -21,6 +21,7 @@ const blogRouter = require("./Routes/blog.js");
 const getCategoryBlogsRouter = require("./Routes/getCategoryBlogs.js");
 const RecentBlogsRouter = require("./Routes/RecentBlogs.js");
 const FavouriteRouter = require("./Routes/Favourite.js");
+const getFavouriteBlogsRouter = require("./Routes/getFavouriteBlogs.js");
 app.use("/signup" , signupRouter);
 app.use("/login" , loginRouter);
 app.use("/userProfile" , userProfileRouter);
@@ -28,6 +29,7 @@ app.use("/blog" , blogRouter);
 app.use("/getCategoryBlogs" , getCategoryBlogsRouter);
 app.use("/RecentBlogs" , RecentBlogsRouter);
 app.use("/Favourite" , FavouriteRouter);
+app.use("/getFavouriteBlogs" , getFavouriteBlogsRouter);
 
 
 app.listen(constants.PORT , function(){

@@ -12,6 +12,7 @@ export function DetailBlogPage(){
 
     const [IsFav , setIsFav] = useState(false);
     const [IsLiked , setIsLiked] = useState(false);
+    const [totalLikes , settotalLikes] = useState();
 
     const token = localStorage.getItem("token");
     useEffect(()=>{
@@ -23,8 +24,6 @@ export function DetailBlogPage(){
             }
         })
         .then((response)=>{
-            console.log("outputFromBackend = ",response.data);
-            console.log(response.data[0].blogId);
             const blog = response.data[0];
             setDetailBlogPage(blog);    
             axios({
@@ -38,8 +37,21 @@ export function DetailBlogPage(){
                 }  
             })
             .then((response)=>{
-                console.log(response.data);
                 setIsFav(response.data);    
+            })
+            axios({
+                method : "GET",
+                url : "http://localhost:4500/like",
+                params : {
+                    blogId : blog.blogId
+                },
+                headers : {
+                    Authorization : token
+                }  
+            })
+            .then((response)=>{
+                settotalLikes(response.data.totalLikes);
+                setIsLiked(response.data.IsLiked);    
             })
         })
     },[])
@@ -58,7 +70,6 @@ export function DetailBlogPage(){
                 }
             })
             .then((response)=>{
-                console.log(response.data)
                 toast(response.data)
             })
         } else {
@@ -74,12 +85,14 @@ export function DetailBlogPage(){
                 }
             })
             .then((response)=>{
-                console.log(response.data)
                 toast(response.data)
             })
         }
         setIsFav(!IsFav);
     }
+
+
+    
 
     const like = ()=>{
         if(!IsLiked){
@@ -95,10 +108,53 @@ export function DetailBlogPage(){
                 }
             })
             .then((response)=>{
-                console.log(response.data);
                 toast(response.data);
+                axios({
+                    method : "GET",
+                    url : "http://localhost:4500/like",
+                    params : {
+                        blogId : DetailBlogPage.blogId
+                    },
+                    headers : {
+                        Authorization : token
+                    }  
+                })
+                .then((response)=>{
+                    settotalLikes(response.data.totalLikes);
+                    setIsLiked(response.data.IsLiked);    
+                })
+            })
+        } else {
+            axios({
+                method : "DELETE",
+                url : "http://localhost:4500/like",
+                data : {
+                    blogId : DetailBlogPage.blogId,
+                    title : DetailBlogPage.title
+                },
+                headers : {
+                    Authorization : token
+                }
+            })
+            .then((response)=>{
+                toast(response.data)
+                axios({
+                    method : "GET",
+                    url : "http://localhost:4500/like",
+                    params : {
+                        blogId : DetailBlogPage.blogId
+                    },
+                    headers : {
+                        Authorization : token
+                    }  
+                })
+                .then((response)=>{
+                    settotalLikes(response.data.totalLikes);
+                    setIsLiked(response.data.IsLiked);    
+                })
             })
         }
+        setIsLiked(!IsLiked);
     }
 
     return (
@@ -130,12 +186,12 @@ export function DetailBlogPage(){
                 </svg>
               </div>
               <div className=" flex justify-center  items-center gap-2 mt-2">
-                <span className="text-xs text-gray-500 uppercase tracking-wider ">Likes </span>{" "}
+                <span className="text-xs text-gray-500 uppercase tracking-wider ">{totalLikes}</span>{" "}
                 <svg onClick={()=>{like()}} xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
                     height="24" 
                     viewBox="0 0 24 24" 
-                    fill="none" 
+                    fill={IsLiked ? "blue" : "none"} 
                     stroke="currentColor" 
                     strokeWidth="1" 
                     strokeLinecap="round" 

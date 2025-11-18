@@ -11,6 +11,7 @@ export function DetailBlogPage(){
     console.log("DetailBlogPage = ",DetailBlogPage)
 
     const [IsFav , setIsFav] = useState(false);
+    const [IsLiked , setIsLiked] = useState(false);
 
     const token = localStorage.getItem("token");
     useEffect(()=>{
@@ -44,7 +45,6 @@ export function DetailBlogPage(){
     },[])
 
     const favourite = ()=>{
-        
         if(!IsFav){
             axios({
                 method : "POST",
@@ -81,6 +81,26 @@ export function DetailBlogPage(){
         setIsFav(!IsFav);
     }
 
+    const like = ()=>{
+        if(!IsLiked){
+            axios({
+                method : "POST",
+                url : "http://localhost:4500/like",
+                data : {
+                    blogId : DetailBlogPage.blogId,
+                    title : DetailBlogPage.title
+                },
+                headers : {
+                    Authorization : token
+                }
+            })
+            .then((response)=>{
+                console.log(response.data);
+                toast(response.data);
+            })
+        }
+    }
+
     return (
         <> 
         <MainLayout>
@@ -102,11 +122,27 @@ export function DetailBlogPage(){
                     viewBox="0 0 24 24" 
                     fill={IsFav ? "red" : "none"} 
                     stroke="currentColor" 
-                    strokeWidth="2" 
+                    strokeWidth="1" 
                     strokeLinecap="round" 
                     strokeLinejoin="round" 
                     className="lucide lucide-heart">
                     <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </div>
+              <div className=" flex justify-center  items-center gap-2 mt-2">
+                <span className="text-xs text-gray-500 uppercase tracking-wider ">Likes </span>{" "}
+                <svg onClick={()=>{like()}} xmlns="http://www.w3.org/2000/svg" 
+                    width="24" 
+                    height="24" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="1" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    className="lucide lucide-like"   
+                    aria-hidden="true">
+                    <path d="M14 9V5a3 3 0 0 0-3-3l-1 7H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h5l1 4 4-8h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-3z"/>
                 </svg>
               </div>
             </div>

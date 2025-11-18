@@ -18,11 +18,7 @@ Router.get("/" , AuthMiddleware ,async function(request,response){
         let params = [currentLoggedInuserId , blogId];
         let outputFromDB = await dbQuery(query , params);
         console.log(outputFromDB);
-        if(outputFromDB.length === 0 ){
-            response.send(false);
-        } 
-          response.send(true);
-
+        outputFromDB.length === 0 ? response.send(false) : response.send(true);
 
     } catch (error) {
         console.log("/Favourite error(POST) = ",error);

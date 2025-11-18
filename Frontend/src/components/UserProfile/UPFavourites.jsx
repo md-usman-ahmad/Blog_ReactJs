@@ -75,10 +75,7 @@ export function UPFavourites() {
           {FavouriteBlogs.map( (item)=>{
             return <Link to={`/${item.category}/${item.blogId}`} key={item.blogId}> <CategoryBlogCard {...item}></CategoryBlogCard> </Link>
           })}
-
-
-
-
+          
         </UserProfileLayout>
       </MainLayout>
     </>

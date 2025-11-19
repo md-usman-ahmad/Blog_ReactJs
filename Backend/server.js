@@ -23,6 +23,8 @@ const RecentBlogsRouter = require("./Routes/RecentBlogs.js");
 const FavouriteRouter = require("./Routes/Favourite.js");
 const getFavouriteBlogsRouter = require("./Routes/getFavouriteBlogs.js");
 const likeRouter = require("./Routes/like.js");
+const getLikedBlogsRouter = require("./Routes/getLikedBlogs.js");
+
 app.use("/signup" , signupRouter);
 app.use("/login" , loginRouter);
 app.use("/userProfile" , userProfileRouter);
@@ -32,6 +34,8 @@ app.use("/RecentBlogs" , RecentBlogsRouter);
 app.use("/Favourite" , FavouriteRouter);
 app.use("/getFavouriteBlogs" , getFavouriteBlogsRouter);
 app.use("/like" , likeRouter);
+app.use("/getLikedBlogs" , getLikedBlogsRouter);
+
 
 
 app.listen(constants.PORT , function(){

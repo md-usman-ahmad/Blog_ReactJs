@@ -1,0 +1,29 @@
+const express = require("express");
+const Router = express.Router();
+const {AuthMiddleware} =  require("../middleware.js");
+const dbQuery = require("../database/dbhelper.js");
+
+Router.get("/" , AuthMiddleware ,async function(request,response){
+    try {
+        console.log("request.originalUrl = ",request.originalUrl);
+        console.log("request.method = ",request.method);
+
+        const {currentLoggedInuserId , currentLoggedInusername} = request;
+        let query = `select *
+                    from Blogs
+                    INNER JOIN likedBlogs on Blogs.blogId = likedBlogs.bId
+                    where likedBlogs.uId = ?
+                    `
+        let params = [currentLoggedInuserId];
+        let outputFromDB = await dbQuery(query , params);
+
+        console.log(outputFromDB);
+        response.send(outputFromDB);
+    } catch (error) {
+        console.log("getLikedBlogs error(GET) = ",error);
+        response.status(500).send(error);
+    }
+})
+
+
+module.exports = Router;

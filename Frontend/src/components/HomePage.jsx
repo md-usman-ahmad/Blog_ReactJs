@@ -21,6 +21,8 @@ export function HomePage(){
             console.log(response.data)
             setRecentBlogs(response.data);
         })
+
+        
     },[])
 
     return (
@@ -53,10 +55,16 @@ export function HomePage(){
                 </div>
             </div>}
 
+                {/* Popular Blogs  */}
+            <div className="w-1/2 mx-auto">
+                <h3 className="text-3xl handwriting font-bold text-stone-800 my-6 mb-2">Popular Blogs </h3>
+                {[].map( (item)=>{
+                    return  <HorizontalCard key={item.blogId} {...item}></HorizontalCard>  
+                    
+                })}
+          </div>
                 {/* Recent Blogs  */}
-                
-
-                <div className="w-1/2 mx-auto">
+            <div className="w-1/2 mx-auto">
                 <h3 className="text-3xl handwriting font-bold text-stone-800 my-6 mb-2">Recent Blogs </h3>
                 {RecentBlogs.map( (item)=>{
                     return  <HorizontalCard key={item.blogId} {...item}></HorizontalCard>  

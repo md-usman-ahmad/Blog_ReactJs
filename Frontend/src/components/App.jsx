@@ -12,6 +12,7 @@ import { AddBlog } from "./AddBlog.jsx";
 import { Toaster } from 'react-hot-toast';
 import { UPEditBlog } from "./UserProfile/UPEditBlog.jsx";
 import { DetailBlogPage } from "./DetailBlogPage.jsx";
+import { UPLiked } from "./UserProfile/UPLiked.jsx";
 
 const routes = createBrowserRouter([
     {
@@ -54,6 +55,10 @@ const routes = createBrowserRouter([
     {
         path : "/UserProfile/EditBlog/:blogId",
         Component : UPEditBlog
+    },
+    {
+        path : "/UserProfile/liked",
+        Component : UPLiked
     }
 ])
 

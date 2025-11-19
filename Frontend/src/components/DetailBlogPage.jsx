@@ -92,7 +92,7 @@ export function DetailBlogPage(){
     }
 
 
-    
+
 
     const like = ()=>{
         if(!IsLiked){
@@ -189,16 +189,14 @@ export function DetailBlogPage(){
                 <span className="text-xs text-gray-500 uppercase tracking-wider ">{totalLikes}</span>{" "}
                 <svg onClick={()=>{like()}} xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
-                    height="24" 
-                    viewBox="0 0 24 24" 
+                    height="24" viewBox="0 0 24 24" 
                     fill={IsLiked ? "blue" : "none"} 
                     stroke="currentColor" 
-                    strokeWidth="1" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    className="lucide lucide-like"   
-                    aria-hidden="true">
-                    <path d="M14 9V5a3 3 0 0 0-3-3l-1 7H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h5l1 4 4-8h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-3z"/>
+                    stroke-width="2" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" 
+                    class="lucide lucide-thumbs-up-icon lucide-thumbs-up">
+                    <path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/>
                 </svg>
               </div>
             </div>

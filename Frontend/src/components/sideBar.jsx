@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { ThumbsUp , Heart  } from 'lucide-react';
 
 export function SideBar(){
     console.log("My Profile");
@@ -41,9 +42,16 @@ export function SideBar(){
          <Link to="/UserProfile/favourites">
          <li>
             <div  className="cursor-pointer flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-700 group">
-               <svg className="shrink-0 w-6 h-6  text-red-500 transition duration-75 dark:text-red-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-  </svg>
+               <Heart />
                <span className="flex-1 ms-3 whitespace-nowrap">Favourite</span>
+            </div>
+         </li>
+         </Link>
+         <Link to="/UserProfile/liked">
+         <li>
+            <div  className="cursor-pointer flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <ThumbsUp />
+               <span className="flex-1 ms-3 whitespace-nowrap">Liked</span>
             </div>
          </li>
          </Link>

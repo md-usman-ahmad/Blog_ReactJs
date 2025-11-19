@@ -21,7 +21,7 @@ export function HorizontalCard({imgurl , blogId , category , title , description
           {title}
         </h3>
         <p className="text-xs text-muted-foreground line-clamp-2">
-          {description.slice(0,20)}
+          {/* {description.slice(0,20)} */}xdfcgbhj
         </p>
         <p className="text-xs text-muted-foreground mt-2">{createdAt}</p>
       </div>

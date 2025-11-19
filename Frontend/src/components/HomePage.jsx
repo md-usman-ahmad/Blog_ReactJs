@@ -11,6 +11,9 @@ export function HomePage(){
     const token = localStorage.getItem("token");
     console.log("navbar token = ",token)
     const [RecentBlogs , setRecentBlogs] = useState([]);
+    const [PopularBlogs , setPopularBlogs] = useState([]);
+    console.log("RecentBlogs - ",RecentBlogs)
+    console.log("PopularBlogs - ",PopularBlogs)
 
     useEffect( ()=>{
         axios({
@@ -18,11 +21,15 @@ export function HomePage(){
             url : "http://localhost:4500/RecentBlogs",
         })
         .then((response)=>{
-            console.log(response.data)
             setRecentBlogs(response.data);
         })
-
-        
+        axios({
+            method  : "GET",
+            url : "http://localhost:4500/PopularBlogs",
+        })
+        .then((response)=>{
+            setPopularBlogs(response.data);
+        })
     },[])
 
     return (
@@ -58,8 +65,8 @@ export function HomePage(){
                 {/* Popular Blogs  */}
             <div className="w-1/2 mx-auto">
                 <h3 className="text-3xl handwriting font-bold text-stone-800 my-6 mb-2">Popular Blogs </h3>
-                {[].map( (item)=>{
-                    return  <HorizontalCard key={item.blogId} {...item}></HorizontalCard>  
+                {PopularBlogs.map( (item)=>{
+                    return <Link to={`/${item.category}/${item.blogId}`} key={item.blogId}>  <HorizontalCard key={item.blogId} {...item}></HorizontalCard> </Link> 
                     
                 })}
           </div>
@@ -67,7 +74,7 @@ export function HomePage(){
             <div className="w-1/2 mx-auto">
                 <h3 className="text-3xl handwriting font-bold text-stone-800 my-6 mb-2">Recent Blogs </h3>
                 {RecentBlogs.map( (item)=>{
-                    return  <HorizontalCard key={item.blogId} {...item}></HorizontalCard>  
+                    return <Link to={`/${item.category}/${item.blogId}`} key={item.blogId}>  <HorizontalCard key={item.blogId} {...item}></HorizontalCard>  </Link>
                     
                 })}
           </div>

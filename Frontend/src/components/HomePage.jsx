@@ -146,9 +146,6 @@ export function HomePage(){
                     </p>
                 </div>
                 </footer>
-
-
-
             </MainLayout>
         </>
     )

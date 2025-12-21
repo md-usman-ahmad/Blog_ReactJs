@@ -25,6 +25,7 @@ const getFavouriteBlogsRouter = require("./Routes/getFavouriteBlogs.js");
 const likeRouter = require("./Routes/like.js");
 const getLikedBlogsRouter = require("./Routes/getLikedBlogs.js");
 const PopularBlogsRouter = require("./Routes/PopularBlogs.js");
+const commentRouter = require("./Routes/comment.js");
 app.use("/signup" , signupRouter);
 app.use("/login" , loginRouter);
 app.use("/userProfile" , userProfileRouter);
@@ -36,6 +37,7 @@ app.use("/getFavouriteBlogs" , getFavouriteBlogsRouter);
 app.use("/like" , likeRouter);
 app.use("/getLikedBlogs" , getLikedBlogsRouter);
 app.use("/PopularBlogs" , PopularBlogsRouter);
+app.use("/comment" , commentRouter);
 
 
 app.listen(constants.PORT , function(){

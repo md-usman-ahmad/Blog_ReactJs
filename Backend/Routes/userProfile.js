@@ -30,14 +30,14 @@ Router.patch("/" , async function(request,response){
         console.log("request.method = ",request.method);
         console.log("request.body = ",request.body);
 
-        const {firstname , age, Gender , email} = request.body;
+        const {firstname , age, Gender , email ,imageurl} = request.body;
         const {currentLoggedInuserId , currentLoggedInusername} = request;
         if(firstname && age && Gender && email){
             let query = `update users
-                        set firstname = ? , age = ? , gender = ? , email = ?
+                        set firstname = ? , age = ? , gender = ? , email = ? , imageurl = ?
                         where userId = ?
                         `  
-            let params = [firstname , age , Gender, email , currentLoggedInuserId];
+            let params = [firstname , age , Gender, email , imageurl ,currentLoggedInuserId];
             await dbQuery(query , params);
             response.send(`${currentLoggedInusername}(userId-${currentLoggedInuserId}) information/bio updated`);
 

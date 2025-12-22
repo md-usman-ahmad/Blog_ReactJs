@@ -99,6 +99,7 @@ export function SignupPage(){
                                     <input ref={passwordRef}  type="text" placeholder="Enter Your Password" className="w-full px-0 py-3 border-0 border-b-2 border-gray-200 focus:outline-none focus:border-green-500 transition-colors bg-transparent"/>
                                 </div>
                             </div>
+                            
                         </div>
                         <div className="flex justify-center mt-10">
                             <button onClick={()=>{addingUserIntoDB()}}

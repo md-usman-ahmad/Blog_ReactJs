@@ -62,6 +62,25 @@ export function HomePage(){
                 </div>
             </div>}
 
+  <section class="py-32 bg-white">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <span class="uppercase tracking-widest text-xs text-gray-400">Personal Blog</span>
+    <h1 class="mt-6 text-6xl font-extrabold leading-tight tracking-tight">
+      Think Less. Write More.
+    </h1>
+    <p class="mt-6 text-lg text-gray-500 max-w-xl mx-auto">
+      Essays on design, technology, and everyday thinking — written slowly.
+    </p>
+    <div class="mt-10">
+      <button class="text-sm font-medium border-b-2 border-gray-900 hover:border-gray-500 transition">
+        Explore Articles →
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
                 {/* Popular Blogs  */}
             <div className="w-1/2 mx-auto">
                 <h3 className="text-3xl handwriting font-bold text-stone-800 my-6 mb-2">Popular Blogs </h3>

@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link , useLocation} from "react-router";
 
@@ -9,6 +11,27 @@ export function Navbar(){
 
     const token = localStorage.getItem("token");
     console.log("navbar token = ",token)
+
+    const [userProfilePicture , setUserProfilePicture] = useState("");
+
+    useEffect(()=>{
+        if(token){
+            axios({
+                method : "GET",
+                url : "http://localhost:4500/userProfile",
+                headers : {
+                    authorization : token
+                }
+            })
+            .then((response)=>{
+                console.log("navbar profile pic ",response.data[0].imageurl);
+                setUserProfilePicture(response.data[0].imageurl);
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+        }    
+    },[token])
 
     return (
         <>
@@ -74,7 +97,7 @@ export function Navbar(){
                                     <span className="sr-only">Go to profile</span>{" "}
                                     <img
                                     className="h-10 w-10 rounded-full object-cover border-2 border-white shadow-md"
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                    src={userProfilePicture}
                                     alt="User profile"
 
                                     />{" "}

@@ -8,7 +8,7 @@ Router.get("/" , async function(request,response){
         console.log("request.originalUrl = ",request.originalUrl);
         console.log("request.method = ",request.method);
 
-        let query = "select * from Blogs order by blogId DESC limit 4";
+        let query = "select * from Blogs order by blogId DESC limit 3";
         let params = [];
         let outputFromDB = await dbQuery(query,params);
         console.log(outputFromDB);

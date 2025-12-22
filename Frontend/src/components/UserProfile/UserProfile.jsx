@@ -42,6 +42,7 @@ export function UserProfile() {
     let firstnameRef = useRef(); 
     let ageRef = useRef(); 
     let emailRef = useRef(); 
+    let imageurlRef = useRef(); 
 
     const updateUserProfile = ()=>{
         axios({
@@ -51,7 +52,8 @@ export function UserProfile() {
                 firstname: firstnameRef.current.value,
                 age: ageRef.current.value ,
                 Gender,
-                email : emailRef.current.value
+                email : emailRef.current.value,
+                imageurl : imageurlRef.current.value
             },
             headers : {
                 authorization : token
@@ -74,8 +76,10 @@ export function UserProfile() {
                   <div className="relative inline-block">
                     <img
                       className="h-20 w-20 rounded-full object-cover border-2 border-gray-100 shadow-sm"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                      alt="Profile"
+                      // https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80
+                      // https://www.aljazeera.com/wp-content/uploads/2024/09/AP24187696260580-1725344074.jpg?resize=770%2C513&quality=80
+                      src={userProfile?.imageurl || ""}
+                      alt=""
                     />{" "}
                     <button className="absolute -bottom-1 -right-1 bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 transition-colors">
                       <svg
@@ -136,7 +140,7 @@ export function UserProfile() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-xs uppercase tracking-wide text-gray-500 mb-1">
+                    <label className="block text-xs uppercase tracking-wide text-gray-500 ">
                       Email Address
                     </label>{" "}
                     <input
@@ -144,6 +148,17 @@ export function UserProfile() {
                       className="w-full px-0 py-1 text-lg border-0 border-b border-gray-200 focus:outline-none focus:border-gray-800 transition-colors bg-transparent"
                       defaultValue={userProfile?.email || ""}
                       ref = {emailRef}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs uppercase tracking-wide text-gray-500 ">
+                      Image URL
+                    </label>{" "}
+                    <input
+                      type="text"
+                      className="w-full px-0 py-1 text-lg border-0 border-b border-gray-200 focus:outline-none focus:border-gray-800 transition-colors bg-transparent"
+                      defaultValue={userProfile?.imageurl || ""}
+                      ref = {imageurlRef}
                     />
                   </div>
                 </div>

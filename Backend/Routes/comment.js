@@ -15,7 +15,7 @@ Router.get("/" , async function(request,response){
         const {blogId} = request.query;
         console.log("blogId comment = ",blogId);
 
-        let query = `select firstname,comments.*
+        let query = `select users.firstname, users.imageurl , comments.*
                      from comments
                      inner join users on users.userId = comments.uId
                      where bId = ?

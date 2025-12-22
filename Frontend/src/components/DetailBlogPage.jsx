@@ -291,7 +291,7 @@ export function DetailBlogPage(){
                     return (
                     <div  className="group">
                     <div className="flex gap-4">
-                        <img src="" alt="" className="w-12 h-12 rounded-full grayscale group-hover:grayscale-0 transition-all" />
+                        <img src={item.imageurl} alt="" className="w-12 h-12 rounded-full grayscale group-hover:grayscale-0 transition-all" />
                         <div className="flex-1">
                         <div className="flex items-baseline gap-2 mb-1">
                             <span className="font-bold text-slate-900">{item.firstname}</span>
